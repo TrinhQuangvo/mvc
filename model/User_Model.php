@@ -3,6 +3,7 @@ class User_Model{
 	public $id;
 	public $email;
 	public $password;
+  public $gender;
 	public $role;
 	public $status;
 	public $token;
@@ -24,7 +25,7 @@ class User_Model{
             $user->role = $row['role'];
             $user->status = $row['status'];
             $user->token = $row['token'];
-            $list_user[] = $user;            
+            $list_user[] = $user;
         }
 
         return $list_user;
@@ -35,7 +36,7 @@ class User_Model{
 		$stmt = $conn->prepare("INSERT INTO users (email, password, role, status, token) VALUES (?, ?, ?, ?, ?)");
 		$stmt->bind_param("sssss", $this->email, $this->password, $this->role, $this->status, $this->token);
 		$rs = $stmt->execute();
-		$this->id = $stmt->insert_id;		
+		$this->id = $stmt->insert_id;
 		$stmt->close();
 		return $rs;
 	}
