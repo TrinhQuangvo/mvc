@@ -2,7 +2,8 @@
 class Album_Model{
   public $id;
   public $name;
-  public $song_id;
+  public $number;
+  public $image;
 
   public function all(){
     $conn = FT_Database::instance()->getConnection();
@@ -17,7 +18,8 @@ class Album_Model{
             $album = new Album_Model();
             $album->id = $row['id'];
             $album->name = $row['name'];
-            $album->song_id = $row['song_id'];
+            $album->number = $row['number'];
+            $album->image = $row['image'];
             $list_album[] = $album;
         }
 
@@ -26,9 +28,9 @@ class Album_Model{
 
   public function save(){
     $conn = FT_Database::instance()->getConnection();
-    $stmt = $conn->prepare("INSERT INTO albums (name, song_id)
-      VALUES (?, ?)");
-    $stmt->bind_param("si", $this->name, $this->song_id);
+    $stmt = $conn->prepare("INSERT INTO albums (name, number, image)
+      VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $this->name, $this->number, $this->image);
     $rs = $stmt->execute();
     $this->id = $stmt->insert_id;
     $stmt->close();
@@ -47,7 +49,8 @@ class Album_Model{
         $album = new Album_Model();
             $album->id = $row['id'];
             $album->name = $row['name'];
-            $album->song_id = $row['song_id'];
+            $album->number = $row['number'];
+            $album->image = $row['image'];
 
         return $albums;
   }
@@ -62,8 +65,8 @@ class Album_Model{
 
   public function update(){
     $conn = FT_Database::instance()->getConnection();
-    $stmt = $conn->prepare("UPDATE albums SET name=?, song_id=? WHERE id=?");
-    $stmt->bind_param("sii", $this->name, $this->song_id, $_POST['id']);
+    $stmt = $conn->prepare("UPDATE albums SET name=?, number=?, image=?, WHERE id=?");
+    $stmt->bind_param("sssi", $this->name, $this->number, $this->image, $_POST['id']);
     $stmt->execute();
     $stmt->close();
   }
