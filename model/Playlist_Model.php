@@ -4,6 +4,7 @@ class Playlist_Model{
   public $song_id;
   public $user_id;
   public $name;
+  public $image;
 
   public function all(){
     $conn = FT_Database::instance()->getConnection();
@@ -20,6 +21,7 @@ class Playlist_Model{
             $playlist->song_id = $row['song_id'];
             $playlist->user_id = $row['user_id'];
             $playlist->name = $row['name'];
+            $playlist->image = $row['image'];
 
             $list_playlist[] = $playlist;
         }
@@ -29,9 +31,9 @@ class Playlist_Model{
 
   public function save(){
     $conn = FT_Database::instance()->getConnection();
-    $stmt = $conn->prepare("INSERT INTO playlists (song_id, user_id, name)
-      VALUES (?, ?, ?)");
-    $stmt->bind_param("iis", $this->song_id, $this->user_id, $this->name);
+    $stmt = $conn->prepare("INSERT INTO playlists (song_id, user_id, name, image)
+      VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("iis", $this->song_id, $this->user_id, $this->name, $this->image);
     $rs = $stmt->execute();
     $this->id = $stmt->insert_id;
     $stmt->close();
@@ -52,6 +54,7 @@ class Playlist_Model{
             $playlist->song_id = $row['song_id'];
             $playlist->user_id = $row['user_id'];
             $playlist->name = $row['name'];
+            $playlist->image = $row['image'];
 
         return $playlist;
   }
@@ -66,8 +69,8 @@ class Playlist_Model{
 
   public function update(){
     $conn = FT_Database::instance()->getConnection();
-    $stmt = $conn->prepare("UPDATE singers SET name=?, song_id=?, user_id=? WHERE id=?");
-    $stmt->bind_param("iisi", $this->song_id, $this->user_id, $this->name, $_POST['id']);
+    $stmt = $conn->prepare("UPDATE singers SET name=?, song_id=?, user_id=?, image=? WHERE id=?");
+    $stmt->bind_param("iissi", $this->song_id, $this->user_id, $this->name, $this->image, $_POST['id']);
     $stmt->execute();
     $stmt->close();
   }
