@@ -7,7 +7,7 @@ class User_Controller extends Base_Controller
     * method: GET
     */
     public function index()
-    {        
+    {
         $this->model->load('User');
         $list_user = $this->model->User->all();
         $data = array(
@@ -24,7 +24,7 @@ class User_Controller extends Base_Controller
     * method: GET
     */
     public function show()
-    {        
+    {
         $this->model->load('User');
         $user = $this->model->User->findById($_GET['id']);
         $data = array(
@@ -41,7 +41,7 @@ class User_Controller extends Base_Controller
     * method: GET
     */
     public function create()
-    {        
+    {
         $this->view->load('users/create');
     }
 
@@ -50,7 +50,7 @@ class User_Controller extends Base_Controller
     * method: POST
     */
     public function store()
-    {        
+    {
         $this->model->load('User');
         $this->model->User->email = $_POST['email'];
         $this->model->User->password = $_POST['password'];
@@ -67,7 +67,7 @@ class User_Controller extends Base_Controller
     * method: GET
     */
     public function edit()
-    {        
+    {
         $this->model->load('User');
         $user = $this->model->User->findById($_GET['id']);
         $data = array(
@@ -84,7 +84,7 @@ class User_Controller extends Base_Controller
     * method: POST
     */
     public function update()
-    {        
+    {
         $this->model->load('User');
         $user = $this->model->User->findById($_POST['id']);
         $user->email = $_POST['email'];
@@ -101,7 +101,7 @@ class User_Controller extends Base_Controller
     * method: GET
     */
     public function delete()
-    {        
+    {
         $this->model->load('User');
         $user = $this->model->User->findById($_GET['id']);
         $user->delete();

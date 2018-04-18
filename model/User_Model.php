@@ -3,8 +3,7 @@ class User_Model{
 	public $id;
 	public $email;
 	public $password;
-  public $gender;
-	public $role;
+  public $role;
 	public $status;
 	public $token;
 
@@ -76,3 +75,4 @@ class User_Model{
 		$stmt->close();
 	}
 }
+?>

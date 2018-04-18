@@ -1,32 +1,34 @@
 <?php
-class Type_Model{
+class Singer_Model{
   public $id;
   public $name;
+  public $mota;
 
   public function all(){
     $conn = FT_Database::instance()->getConnection();
-    $sql = 'select * from types';
+    $sql = 'select * from singers';
     $result = mysqli_query($conn, $sql);
-    $list_album = array();
+    $list_singer = array();
 
     if(!$result)
       die('Error: '.mysqli_query_error());
 
     while ($row = mysqli_fetch_assoc($result)){
-            $type = new Type_Model();
-            $type->id = $row['id'];
-            $type->name = $row['name'];
-            $list_type[] = $type;
+            $singer = new Singer_Model();
+            $singer->id = $row['id'];
+            $singer->name = $row['name'];
+            $singer->mota = $row['mota'];
+            $list_singer[] = $singer;
         }
 
-        return $list_type;
+        return $list_singer;
   }
 
   public function save(){
     $conn = FT_Database::instance()->getConnection();
-    $stmt = $conn->prepare("INSERT INTO types (name)
-      VALUES (?)");
-    $stmt->bind_param("s", $this->name);
+    $stmt = $conn->prepare("INSERT INTO singers (name, mota)
+      VALUES (?, ?)");
+    $stmt->bind_param("ss", $this->name, $this->mota);
     $rs = $stmt->execute();
     $this->id = $stmt->insert_id;
     $stmt->close();
@@ -35,23 +37,24 @@ class Type_Model{
 
   public function findById($id){
     $conn = FT_Database::instance()->getConnection();
-    $sql = 'select * from types where id='.$id;
+    $sql = 'select * from singers where id='.$id;
     $result = mysqli_query($conn, $sql);
 
     if(!$result)
       die('Error: ');
 
     $row = mysqli_fetch_assoc($result);
-        $type = new Type_Model();
-            $type->id = $row['id'];
-            $type->name = $row['name'];
+        $singer = new Singer_Model();
+            $singer->id = $row['id'];
+            $singer->name = $row['name'];
+            $singer->mota = $row['mota'];
 
-        return $type;
+        return $singer;
   }
 
   public function delete(){
     $conn = FT_Database::instance()->getConnection();
-    $sql = 'delete from types where id='.$this->id;
+    $sql = 'delete from singers where id='.$this->id;
     $result = mysqli_query($conn, $sql);
 
     return $result;
@@ -59,8 +62,8 @@ class Type_Model{
 
   public function update(){
     $conn = FT_Database::instance()->getConnection();
-    $stmt = $conn->prepare("UPDATE types SET name=? WHERE id=?");
-    $stmt->bind_param("si", $this->name, $_POST['id']);
+    $stmt = $conn->prepare("UPDATE singers SET name=?, mota=? WHERE id=?");
+    $stmt->bind_param("ssi", $this->name, $this->mota, $_POST['id']);
     $stmt->execute();
     $stmt->close();
   }
