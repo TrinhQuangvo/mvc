@@ -28,7 +28,7 @@ function FT_load()
         $action = empty($_POST['a']) ? $config['default_action'] : $_POST['a'];
     }
 
-    
+
 
     // Chuyển đổi tên controller vì nó có định dạng là {Name}_Controller
     $controller = ucfirst(strtolower($controller)) . '_Controller';
