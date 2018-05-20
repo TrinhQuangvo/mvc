@@ -52,10 +52,10 @@ class singer_Controller extends Base_Controller
     public function store()
     {
         $this->model->load('Singer');
-        $this->model->singer->name = $_POST['name'];
-        $this->model->singer->image = $_POST['image'];
-        $this->model->singer->mota = $_POST['mota'];
-        $this->model->singer->save();
+        $this->model->Singer->name = $_POST['name'];
+        $this->model->Singer->image = $_POST['image'];
+        $this->model->Singer->mota = $_POST['mota'];
+        $this->model->Singer->save();
 
         go_back();
     }
@@ -89,7 +89,6 @@ class singer_Controller extends Base_Controller
         $singer->image = $_POST['image'];
         $singer->mota = $_POST['mota'];            ;
         $singer->update();
-
         go_back();
     }
 

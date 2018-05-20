@@ -64,8 +64,8 @@ class type_Controller extends Base_Controller
     */
     public function edit()
     {
-        $this->model->load('type');
-        $type = $this->model->type->findById($_GET['id']);
+        $this->model->load('Type');
+        $type = $this->model->Type->findById($_GET['id']);
         $data = array(
             'title' => 'edit',
             'type' => $type

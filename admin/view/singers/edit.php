@@ -14,13 +14,19 @@
 	    	<label>Email:</label>
 	    </div>
 	    <div class="row">   		
-	    	<input type="text" class="form-control p-2 m-2" name="email" value="<?php echo $singer->name; ?>">
+	    	<input type="text" class="form-control p-2 m-2" name="name" value="<?php echo $singer->name; ?>">
 	    </div>
 	    <div class="row">   		
-	    	<label>Mô Tả:</label>
+	    	<label>Mô Tả</label>
 	    </div>
 	    <div class="row">   	
-	    	<input type="text" class="form-control p-2 m-2" name="text" value="<?php echo $singer->mota; ?>">
+	    	<input type="text" class="form-control p-2 m-2" name="mota" value="<?php echo $singer->mota; ?>">
+	    </div>
+	    <div class="row">   		
+	    	<label>Hình Ảnh</label>
+	    </div>
+	    <div class="row">   	
+	    	<input type="text" class="form-control p-2 m-2" name="image" value="<?php echo $singer->image; ?>">
 	    </div>
 	    
 	    <div class="row">   

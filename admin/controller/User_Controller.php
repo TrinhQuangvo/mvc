@@ -108,4 +108,25 @@ class User_Controller extends Base_Controller
 
         go_back();
     }
+    public function login(){
+        
+    $this->view->load('login',$data);
+
+    if(isset($_POST['login'])){
+        $email=$_POST['email'];
+        $password=$_POST['password'];
+        $this->model->load('User');
+        $id = $this->model->User->validate_login($email,$password); 
+        redirect_to("localhost/mvc/admin.php?c=user&a=index");
+            if ($admin_midlleware) {
+                $token = $this->model->Users->generate_token($id);
+                //redirect_to(URL . "controller=user&action=index&pages=0&token=$token");
+                redirect_to("localhost/mvc/admin.php?c=user&a=index");
+            } else {
+                go_back();
+            }
+        } else {
+           go_back();
+        }
+    }
 }

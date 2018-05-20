@@ -12,20 +12,22 @@
             <th>Email</th>
             <th>Role</th>
             <th>Edit</th>
+            <th>status</th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody>
         <?php foreach ($list_user as $user) { ?>
           <tr>
-            <td><?php echo increment_once($index); ?></td>
-            <td><?php echo $user->email; ?></td>
-            <td><?php echo $user->role; ?></td>
-            <td><a href="admin.php?c=user&a=edit&id=<?php echo $user->id; ?>">Edit</a></td>
-            <td><a href="admin.php?c=user&a=delete&id=<?php echo $user->id; ?>">Delete</a</td>
+            <td><?=increment_once($index); ?></td>
+            <td><?=$user->email?></td>
+            <td><?=$user->role?></td>
+            <td><?=$user->status?></td>
+            <td><a href="admin.php?c=user&a=edit&id=<?=$user->id?>">Edit</a></td>
+            <td><a href="admin.php?c=user&a=delete&id=<?=$user->id?>">Delete</a</td>
           </tr>
         <?php } ?>
         </tbody>
     </table>
 </div>
-<?php require_once(PATH_PUBLIC . '/template/admin/footer.php'); ?>
+<?php require_once(PATH_PUBLIC . '/template/admin/footer.php');?>

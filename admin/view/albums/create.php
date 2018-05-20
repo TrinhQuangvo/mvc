@@ -4,7 +4,7 @@
 <div id="wrapper">
 	<div class="container">
 	    <form method="post" action="admin.php">
-	    <input type="hidden" name="c" value="user">
+	    <input type="hidden" name="c" value="album">
 	    <input type="hidden" name="a" value="store">
 	    <div class="row">   		
 	    	<h2>Thêm Mới Album</h2>

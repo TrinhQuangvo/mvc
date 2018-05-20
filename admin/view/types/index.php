@@ -3,7 +3,7 @@
 ?>
 <div class="container">
     <div class="row">
-        <h3>Danh sach type</h3>
+        <h3>Thể Loại</h3>
     </div>
     <table class="table">
         <thead>

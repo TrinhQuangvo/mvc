@@ -25,8 +25,8 @@ class album_Controller extends Base_Controller
     */
     public function show()
     {
-        $this->model->load('album');
-        $album = $this->model->album->findById($_GET['id']);
+        $this->model->load('Album');
+        $album = $this->model->Album->findById($_GET['id']);
         $data = array(
             'title' => 'show',
             'album' => $album

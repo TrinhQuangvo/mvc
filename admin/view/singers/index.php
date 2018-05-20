@@ -20,7 +20,7 @@
         <?php foreach ($list_singer as $singer) { ?>
           <tr>
             <td><?= increment_once($index); ?></td>
-            <td><?= $singer->name; ?></td>
+            <td><?=ucfirst($singer->name)?></td>
             <td><img src="<?= $singer->image; ?>" with=160 height=90 alt=""></td>
             <td><?= $singer->mota?></td>
             <td><a href="admin.php?c=singer&a=edit&id=<?= $singer->id; ?>">Edit</a></td>

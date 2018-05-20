@@ -22,14 +22,13 @@ class Singer_Model{
             $singer->mota = $row['mota'];
             $list_singer[] = $singer;
         }
-
         return $list_singer;
   }
 
   public function save(){
     $conn = FT_Database::instance()->getConnection();
-    $stmt = $conn->prepare("INSERT INTO singers (name, mota)
-      VALUES (?, ?)");
+    $stmt = $conn->prepare("INSERT INTO singers (name, mota,image)
+      VALUES (?,?,?)");
     $stmt->bind_param("sss", $this->name,$this->image, $this->mota);
     $rs = $stmt->execute();
     $this->id = $stmt->insert_id;

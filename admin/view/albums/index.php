@@ -19,7 +19,7 @@
         <?php foreach ($list_album as $album) { ?>
           <tr>
             <td><?= increment_once($index); ?></td>
-            <td><?= $album->name; ?></td>
+            <td><?=ucfirst($album->name)?></td>
             <td><img src="<?= $album->image; ?>" with=160 height=90 alt=""></td>
             <td><a href="admin.php?c=album&a=edit&id=<?= $album->id; ?>">Edit</a></td>
             <td><a href="admin.php?c=album&a=delete&id=<?= $album->id; ?>">Delete</a</td>

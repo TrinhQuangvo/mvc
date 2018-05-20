@@ -14,13 +14,13 @@
 	    	<label>Tên:</label>
 	    </div>
 	    <div class="row">   		
-	    	<input type="text" class="form-control p-2 m-2" name="email" value="<?php echo $album->name; ?>">
+	    	<input type="text" class="form-control p-2 m-2" name="name" value="<?php echo $album->name; ?>">
 	    </div>
 	    <div class="row">   		
 	    	<label>Hình Ảnh:</label>
 	    </div>
 	    <div class="row">   	
-	    	<input type="text" class="form-control p-2 m-2" name="text" value="<?php echo $album->image; ?>">
+	    	<input type="text" class="form-control p-2 m-2" name="image" value="<?php echo $album->image; ?>">
 	    </div>
 	    
 	    <div class="row">   

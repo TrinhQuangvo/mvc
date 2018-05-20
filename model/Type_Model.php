@@ -7,7 +7,7 @@ class Type_Model{
     $conn = FT_Database::instance()->getConnection();
     $sql = 'select * from types';
     $result = mysqli_query($conn, $sql);
-    $list_album = array();
+    $list_type = array();
 
     if(!$result)
       die('Error: '.mysqli_query_error());
@@ -63,6 +63,29 @@ class Type_Model{
     $stmt->bind_param("si", $this->name, $_POST['id']);
     $stmt->execute();
     $stmt->close();
+  }
+  public function InfoType()
+  {
+    $conn = FT_Database::instance()->getConnection();
+    $sql = 'SELECT types.id , types.name
+    ,songs.id as songs_id ,songs.name as songs_name , songs.url
+    FROM types INNER JOIN songs ON types.id = songs.types_id';
+    
+    $list_type = array();
+    $song = array();
+    $result = mysqli_query($conn, $sql);
+    if(!$result)
+      die('Error: '.mysqli_query_error());
+
+    while ($row = mysqli_fetch_assoc($result)){
+         $list_type[$row["id"]]["name"] = $row["name"];
+         $list_type[$row["id"]]["songs"][$row["songs_id "]] = array(
+             "songs_name"=>$row["songs_name"],
+             "url"=>$row["url"],
+     ); 
+      
+    }
+   return $list_type;
   }
 }
 ?>

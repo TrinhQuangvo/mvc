@@ -3,7 +3,7 @@ class User_Model{
 	public $id;
 	public $email;
 	public $password;
-  public $role;
+  	public $role;
 	public $status;
 	public $token;
 
@@ -30,13 +30,13 @@ class User_Model{
 	}
 
 	public function save(){
+		
 		$conn = FT_Database::instance()->getConnection();
-		$stmt = $conn->prepare("INSERT INTO users (email, password, role, token) VALUES (?, ?, ?, ?)");
-		$stmt->bind_param("ssss", $this->email, $this->password, $this->role, $this->token);
+		$stmt = $conn->prepare("INSERT INTO users (email, password, role,status, token) VALUES (?, ?,?,?, ?)");
+		$stmt->bind_param("sssss", $this->email, $this->password, $this->role,$this->status, $this->token);
 		$rs = $stmt->execute();
 		$this->id = $stmt->insert_id;
 		$stmt->close();
-		return $rs;
 	}
 
 	public function findById($id){
@@ -72,5 +72,23 @@ class User_Model{
 		$stmt->execute();
 		$stmt->close();
 	}
+	public function login($email, $password)
+	{
+		$conn = FT_Database::instance()->getConnection();
+		$sql = "SELECT * FROM users WHERE email = '" . $email . "' and password = '" . $password . "'";
+		$result = mysqli_query($conn, $sql);
+		if(!$result)
+			die('Error: ');
+		$row = mysqli_fetch_assoc($result);
+        $user = new User_Model();
+        $user->id = $row['id'];
+        $user->email = $row['email'];
+        $user->password = $row['password'];
+        $user->role = $row['role'];
+        $user->status = $row['status'];
+        return $user;
+	}
+
+	
 }
 ?>
