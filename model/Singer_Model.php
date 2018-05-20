@@ -2,6 +2,7 @@
 class Singer_Model{
   public $id;
   public $name;
+  public $image;
   public $mota;
 
   public function all(){
@@ -17,6 +18,7 @@ class Singer_Model{
             $singer = new Singer_Model();
             $singer->id = $row['id'];
             $singer->name = $row['name'];
+            $singer->image=$row['image'];
             $singer->mota = $row['mota'];
             $list_singer[] = $singer;
         }
@@ -28,7 +30,7 @@ class Singer_Model{
     $conn = FT_Database::instance()->getConnection();
     $stmt = $conn->prepare("INSERT INTO singers (name, mota)
       VALUES (?, ?)");
-    $stmt->bind_param("ss", $this->name, $this->mota);
+    $stmt->bind_param("sss", $this->name,$this->image, $this->mota);
     $rs = $stmt->execute();
     $this->id = $stmt->insert_id;
     $stmt->close();
@@ -47,6 +49,7 @@ class Singer_Model{
         $singer = new Singer_Model();
             $singer->id = $row['id'];
             $singer->name = $row['name'];
+            $singer->image=$row['image'];
             $singer->mota = $row['mota'];
 
         return $singer;
@@ -62,8 +65,8 @@ class Singer_Model{
 
   public function update(){
     $conn = FT_Database::instance()->getConnection();
-    $stmt = $conn->prepare("UPDATE singers SET name=?, mota=? WHERE id=?");
-    $stmt->bind_param("ssi", $this->name, $this->mota, $_POST['id']);
+    $stmt = $conn->prepare("UPDATE singers SET name=?,image=?, mota=? WHERE id=?");
+    $stmt->bind_param("sssi", $this->name,$this->image, $this->mota, $_POST['id']);
     $stmt->execute();
     $stmt->close();
   }

@@ -19,8 +19,8 @@
     while ($row = mysqli_fetch_assoc($result)){
             $song = new Song_Model();
             $song->id = $row['id'];
-            $song->singer_id = $row['singer_id'];
-            $song->type_id = $row['type_id'];
+            $song->singer_id = $row['singers_id'];
+            $song->type_id = $row['types_id'];
             $song->name = $row['name'];
             $song->image = $row['image'];
             $song->lyric = $row['lyric'];

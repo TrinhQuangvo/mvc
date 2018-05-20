@@ -22,7 +22,6 @@ class User_Model{
             $user->email = $row['email'];
             $user->password = $row['password'];
             $user->role = $row['role'];
-            $user->status = $row['status'];
             $user->token = $row['token'];
             $list_user[] = $user;
         }
@@ -32,8 +31,8 @@ class User_Model{
 
 	public function save(){
 		$conn = FT_Database::instance()->getConnection();
-		$stmt = $conn->prepare("INSERT INTO users (email, password, role, status, token) VALUES (?, ?, ?, ?, ?)");
-		$stmt->bind_param("sssss", $this->email, $this->password, $this->role, $this->status, $this->token);
+		$stmt = $conn->prepare("INSERT INTO users (email, password, role, token) VALUES (?, ?, ?, ?)");
+		$stmt->bind_param("ssss", $this->email, $this->password, $this->role, $this->token);
 		$rs = $stmt->execute();
 		$this->id = $stmt->insert_id;
 		$stmt->close();
@@ -54,7 +53,6 @@ class User_Model{
         $user->email = $row['email'];
         $user->password = $row['password'];
         $user->role = $row['role'];
-        $user->status = $row['status'];
 
         return $user;
 	}
@@ -69,8 +67,8 @@ class User_Model{
 
 	public function update(){
 		$conn = FT_Database::instance()->getConnection();
-		$stmt = $conn->prepare("UPDATE users SET email=?, password=?, role=?, status=? WHERE id=?");
-		$stmt->bind_param("ssssi", $this->email, $this->password, $this->role, $this->status, $_POST['id']);
+		$stmt = $conn->prepare("UPDATE users SET email=?, password=?, role=? WHERE id=?");
+		$stmt->bind_param("sssi", $this->email, $this->password, $this->role, $_POST['id']);
 		$stmt->execute();
 		$stmt->close();
 	}
